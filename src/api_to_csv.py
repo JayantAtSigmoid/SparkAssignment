@@ -1,18 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[51]:
-
-
-import requests
-import csv
-import json
-import logging
-import os
-
-
-# In[65]:
-
+from src.imports import *
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)  # Set logging level to INFO
@@ -51,9 +37,6 @@ def fetch_country_data():
         logging.error(f"An error occurred during data retrieval: {str(e)}")
         return None
 # fetch_country_data()
-
-
-# In[63]:
 
 
 # Configure logging
@@ -98,7 +81,3 @@ def write_country_data_to_csv(csv_file):
     except Exception as e:
         # Log general exception during CSV file operation
         logging.error(f"Error opening CSV file: {str(e)}")
-
-# Example usage:
-
-

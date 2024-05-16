@@ -1,39 +1,13 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[65]:
-
-
-import sys;
-
-print(sys.executable);
-
-
-# In[82]:
-
-
+from src.imports import *
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import json
 import pandas as pd
-import logging
-import os
-
-
-# In[83]:
-
+import sys
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-
-# In[72]:
-
-
 spark = SparkSession.builder.appName("Read COVID Data").getOrCreate()
-
-
-# In[84]:
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 config_file_path = os.path.join(script_dir, '..', 'config.json')
@@ -49,15 +23,11 @@ df = spark.read.csv(config['data']['csv_file'], header=True, inferSchema=True)
 df.show()
 
 
-# In[85]:
-
 
 pandas_covid_data = df.collect()
 pandas_covid_data = pd.DataFrame(pandas_covid_data, columns=df.columns)
 pandas_covid_data
 
-
-# In[86]:
 
 
 def calculate_death_to_cases_ratio(df):
@@ -65,8 +35,6 @@ def calculate_death_to_cases_ratio(df):
 
 calculate_death_to_cases_ratio(df)
 
-
-# In[87]:
 
 
 # 2.1) Most affected country among all the countries ( total death/total covid cases).
@@ -84,8 +52,6 @@ print("Most affected Country:",most_affected_country(df)['Country'][0])
 most_affected_country(df)
 
 
-# In[88]:
-
 
 # 2.2) Least affected country among all the countries ( total death/total covid cases).
 def least_affected_country(df):
@@ -99,9 +65,6 @@ def least_affected_country(df):
 
 print("Least affected Country:",least_affected_country(df)['Country'][0])
 least_affected_country(df)
-
-
-# In[90]:
 
 
 # 2.3) Country with highest covid cases.
@@ -118,8 +81,6 @@ print("Country with highest COVID cases:", country_with_highest_cases(df)['Count
 country_with_highest_cases(df)
 
 
-# In[91]:
-
 
 # 2.4) Country with minimum covid cases.
 def country_with_minimum_cases(df):
@@ -134,9 +95,6 @@ print("Country with minimum COVID cases:", country_with_minimum_cases(df)['Count
 country_with_minimum_cases(df)
 
 
-# In[92]:
-
-
 # 2.5) Total cases.
 def total_cases(df):
     try:
@@ -148,9 +106,6 @@ def total_cases(df):
 
 print("Total cases:", total_cases(df)['total_cases'][0])
 total_cases(df)
-
-
-# In[93]:
 
 
 # 2.6) Country that handled the covid most efficiently( total recovery/ total covid cases).
@@ -168,8 +123,6 @@ print("Country that handled the COVID most efficiently:", most_efficient_country
 most_efficient_country(df)
 
 
-# In[94]:
-
 
 # 2.7) Country that handled the covid least efficiently( total recovery/ total covid cases).
 
@@ -186,9 +139,6 @@ print("Country that handled the COVID least efficiently:", least_efficient_count
 least_efficient_country(df)
 
 
-# In[95]:
-
-
 # 2.8) Country least suffering from covid ( least critical cases).
 def country_least_critical_cases(df):
     try:
@@ -202,9 +152,6 @@ print("Country least suffering from COVID (least critical cases):", country_leas
 country_least_critical_cases(df)
 
 
-# In[96]:
-
-
 # 2.9) Country still suffering from covid (highest critical cases).
 def country_highest_critical_cases(df):
     try:
@@ -216,9 +163,6 @@ def country_highest_critical_cases(df):
 
 print("Country still suffering from COVID (highest critical cases):", country_highest_critical_cases(df)['Country'][0])
 country_highest_critical_cases(df)
-
-
-# In[ ]:
 
 
 # Restful APIs
