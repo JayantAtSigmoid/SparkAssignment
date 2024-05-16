@@ -15,8 +15,8 @@ This project fetches COVID-19 data from an external API, analyzes it using Apach
 1. Clone the repository:
 
    ```bash
-   git clone <repository-url>
-   cd <project-folder>
+   git clone https://github.com/JayantAtSigmoid/SparkAssignment
+   cd SparkAssignment
    
 2. Install dependencies:
    ```bash
@@ -31,16 +31,18 @@ This project fetches COVID-19 data from an external API, analyzes it using Apach
 Open a web browser and navigate to http://localhost:8000/ to access the API links.
 
 # API Endpoints
-/get-covid-data: Returns the COVID-19 data for all countries.
-/most-affected-country: Returns the most affected country.
-/least-affected-country: Returns the least affected country.
-/country-highest-cases: Returns the country with the highest COVID cases.
-/country-minimum-cases: Returns the country with the minimum COVID cases.
-/total-cases: Returns the total COVID cases.
-/most-efficient-country: Returns the country that handled COVID most efficiently.
-/least-efficient-country: Returns the country that handled COVID least efficiently.
-/country-least-critical-cases: Returns the country least suffering from COVID (least critical cases).
-/country-highest-critical-cases: Returns the country still suffering from COVID (highest critical cases).
+
+- `/get-covid-data`: Returns the COVID-19 data for all countries.
+- `/most-affected-country`: Returns the most affected country.
+- `/least-affected-country`: Returns the least affected country.
+- `/country-highest-cases`: Returns the country with the highest COVID cases.
+- `/country-minimum-cases`: Returns the country with the minimum COVID cases.
+- `/total-cases`: Returns the total COVID cases.
+- `/most-efficient-country`: Returns the country that handled COVID most efficiently.
+- `/least-efficient-country`: Returns the country that handled COVID least efficiently.
+- `/country-least-critical-cases`: Returns the country least suffering from COVID (least critical cases).
+- `/country-highest-critical-cases`: Returns the country still suffering from COVID (highest critical cases).
+
 
 ## Configuration
 The API base URL and CSV file path are specified in config.json.
